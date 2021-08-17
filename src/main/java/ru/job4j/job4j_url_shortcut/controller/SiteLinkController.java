@@ -61,8 +61,9 @@ public class SiteLinkController {
     @GetMapping("/redirect/{hash}")
     public ResponseEntity<SiteLink> redirect(@PathVariable String hash) {
         SiteLink siteLink = siteLinkRepository.findByHash(hash);
-        siteLink.setCounter(siteLink.getCounter() + 1);
-        siteLinkRepository.save(siteLink);
+        siteLinkRepository.appendCounter(hash);
+        //siteLink.setCounter(siteLink.getCounter() + 1);
+        //siteLinkRepository.save(siteLink);
         return new ResponseEntity(
                 new MultiValueMapAdapter<>(Map.of("REDIRECT", List.of(siteLink.getLink()))),
                 HttpStatus.MOVED_TEMPORARILY

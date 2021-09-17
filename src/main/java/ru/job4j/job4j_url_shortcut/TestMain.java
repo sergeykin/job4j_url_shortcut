@@ -41,6 +41,5 @@ public class TestMain {
 
         System.out.println(RandomStringUtils.randomAlphabetic(10));
         System.out.println("random = " + result);
-
     }
 }
